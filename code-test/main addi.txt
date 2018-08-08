@@ -1,0 +1,7 @@
+addi $s0, $zero, 1;
+addi $s1, $zero, 2;
+addi $s2, $zero, 3;
+addi $t0, $zero, 4;
+addi $t1, $zero, 5;
+addi $d0, $zero, 6;
+addi $d1, $zero, 7;

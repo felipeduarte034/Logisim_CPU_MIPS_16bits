@@ -1,0 +1,64 @@
+====================INSTR====================
+INSTRUÇÃO R :: 3 | 3 | 3 | 3 | 1 | 3
+INSTRUÇÃO I :: 3 | 3 | 3 | 7
+INSTRUÇÃO J :: 3 | 13
+=============================================
+
+
+====================OP====================
+000 R -> RD, RS, RT    |OPERATION OF REGISTERS
+001 R -> RD = RT << SH |SHIFT LEFT
+010 R -> RD, RS, RT    |LESS RD = RS < RT ? 1 : 0
+011 I -> RT, IMM(RS)   |LOAD WORD
+100 I -> RT, IMM(RS)   |STORE WORD
+101 I -> RT, RS, IMM   |BRAMCH IF EQUAL (RS == RT)
+110 I -> RT, RS, IMM   |ADDI
+111 J -> ADDR          |JUMP
+=============================================
+
+
+===============MAPEAMENTO REG===============
+8 REGISTERS
+0       - ZERO -> $0
+1 2 e 3 - RS   -> $s0 $s1 $s2
+4 e 5   - RT   -> $t0 $t1
+6 e 7   - RD   -> $d0 $d1
+=============================================
+
+
+====================FUNC====================
+000-> ADD
+001-> SUB
+010-> MULT
+011-> DIV
+100-> AND
+101-> OR
+110-> NOT RD = ~RT
+111->
+=============================================
+
+
+====================OBS====================
+OBS: Mem Addr = 4 bits = 16 linhas de instruções
+JUMP linha (0 ao 15);
+EQUAL linha (0 ao 15);
+
+OBS: IMM = 7 bits --> 0 até 127 
+--> 000 0000 até 111 1111 --> 00H até 7FH
+(LOAD, STORE, ADDI);
+
+OBS: SHIFT = 3 bits = 0 até 7;
+============================================
+
+pag 266
+=====================CI=====================
+CICLOS DE CLOCK POR INSTRUÇÂO (CI)
+000 R -> RD = RS + RT           | 2
+001 R -> RD = RT << SH          | 1
+010 R -> RD = (RS < RT) ? 1 : 0 | 1
+011 I -> RT = M[IMM + RS]       | 2
+100 I -> M[IMM + RS] = RT       | 1
+101 I -> IF(RS == RT) PC=IMM    | 1
+110 I -> RT = RS + IMM          | 2
+111 J -> JUMP ADDR              | 1
+============================================
